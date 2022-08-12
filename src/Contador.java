@@ -1,8 +1,8 @@
 public class Contador {
-    int contador;
+    private int contador;
 
     public int getContador() {
-        return contador;
+        return this.contador;
     }
 
     public Contador(){
