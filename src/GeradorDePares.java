@@ -15,26 +15,31 @@ public class GeradorDePares extends Thread{
     }
     public void run() {
         try {
-            while(this.contGlobal.getContador() < 100){
+            boolean ha_espaco = true;
+            while(ha_espaco){
                 this.mutex.acquire();
-                if(this.contGlobal.getContador() >= 100) return;
-                Random r = new Random();
-                // pra pega numero aleatorio entre 2 numeros: (maximo - min) + min
-                int par = r.nextInt(8);
-                if (par % 2 == 1) par++;
-                
-                this.chave[this.contGlobal.getContador()] = par;
-                this.contGlobal.contar();
-                this.qntd_pares++;
-                
-                //Thread.sleep(r.nextInt(2000) + 1000);
-                Thread.sleep(r.nextInt(500) + 100);
-                this.mutex.release();
+                if(this.contGlobal.getContador()<100){
+                    Random r = new Random();
+                    // pra pega numero aleatorio entre 2 numeros: (maximo - min) + min
+                    int par = r.nextInt(8);
+                    if (par % 2 == 1) par++;
+                    
+                    this.qntd_pares++;
+                    this.chave[this.contGlobal.getContador()] = par;
+                    this.contGlobal.contar();
+                    
+                    Thread.sleep(r.nextInt(2000) + 1000);
+                    //Thread.sleep(r.nextInt(500) + 100);
+                }else{
+                    ha_espaco = false;
+                }
+            mutex.release();
             }
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
     public int getQntd(){ return qntd_pares; }
-
 }
+
