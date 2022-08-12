@@ -1,2 +1,2 @@
 # PadraoMutex
-Trabalho sobre programacao concorrente no java
+Trabalho sobre programacao paralela no java
