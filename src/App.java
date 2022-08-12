@@ -13,10 +13,13 @@ public class App {
         GeradorDePares par1 = new GeradorDePares(chave, mutexPares, contGlobal);
         GeradorDePares par2 = new GeradorDePares(chave, mutexPares, contGlobal);
 
+        // com o delay padrao ( aleatorio entre 1000 e 3000 ms ) demora ~1m40s
+        
         impar1.start();
         par1.start();
         impar2.start();
         par2.start();
+        System.out.println("Threads Iniciadas!");
 
         try{
             impar1.join();
