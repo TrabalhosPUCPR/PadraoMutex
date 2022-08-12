@@ -13,7 +13,7 @@ public class App {
         GeradorDePares par1 = new GeradorDePares(chave, mutexPares, contGlobal);
         GeradorDePares par2 = new GeradorDePares(chave, mutexPares, contGlobal);
 
-        // com o delay padrao ( aleatorio entre 1000 e 3000 ms ) demora ~1m40s
+        // com o delay padrao ( aleatorio entre 1000 e 3000 ms ) demora ~1m40s pra terminar
         
         impar1.start();
         par1.start();
@@ -27,12 +27,14 @@ public class App {
             par1.join();
             par2.join();
             System.out.println("FIM!");
-            System.out.print("[");
-            for(int i = 0; i < chave.length; i++){
-                System.out.print(chave[i]);
-                if(i + 1 < chave.length) System.out.print(", ");
+            System.out.println("Quantidade de numeros impares: " + (impar2.getQntd() + impar1.getQntd()));
+            System.out.println("Quantidade de numeros pares: " + (par2.getQntd() + par1.getQntd()));
+            System.out.println("Quantidade de numeros inserido: " + contGlobal.getContador()); // so pra ter ctz que foi realmente todos os 100
+            System.out.print("Array criado: [");
+            for(int i = 0; i < chave.length - 1; i++){
+                System.out.print(chave[i] + ", ");
             }
-            System.out.print("]");
+            System.out.println(chave[chave.length - 1] + "]");
         }catch(Exception e){
             System.out.println(e);
         }
